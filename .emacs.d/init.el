@@ -16,27 +16,14 @@
 ;(setq init-loader-show-log-after-init nil)
 (init-loader-load "~/.emacs.d/inits")
 
-;; add elisp directory paths to the load-path.
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
-
-;; load configurations.
-;; (load "package_cfg")
-;; (load "basic")
-;; (load "linum_cfg")
-;; (load "whitespace_cfg")
-;; (load "color_theme_cfg")
-;; (load "woman_cfg")
-;; (load "helm_cfg")
-;; (load "sr_speedbar_cfg")
-;; (load "company_cfg")
-;; (load "c_mode_hook")
-
 ;; These are configurations which were make by emacs automatically.
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-time-mode t)
  '(package-selected-packages
    (quote
     (color-theme sr-speedbar init-loader ggtags company helm-gtags helm)))
@@ -47,4 +34,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ricty Diminished" :foundry "outline" :slant normal :weight normal :height 143 :width normal)))))
+ '(default ((t (:family "Ricty Diminished" :foundry "outline" :slant normal :weight normal :height 128 :width normal)))))
