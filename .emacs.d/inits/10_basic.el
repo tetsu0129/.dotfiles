@@ -24,7 +24,7 @@
 (global-set-key "\C-xl" 'goto-line)
 
 ;; C-x L で load-file
-(global-set-key "\C-xL" 'load-file)
+;(global-set-key "\C-xL" 'load-file)
 
 ;; M-p, M-n で 段落単位での移動
 (global-set-key "\M-p" 'backward-paragraph)
@@ -64,3 +64,38 @@
 ;; display time.
 (setq display-time-24hr-format t)
 (display-time)
+
+;; copy current buffer's file name to the clipboard
+(global-set-key (kbd "C-M-x") 'copy-file-name-to-clipboard)
+;; copy current buffer's file path to the clipboard
+(global-set-key (kbd "C-M-c") 'copy-file-path-to-clipboard)
+;; copy current buffer's file path to the clipboard
+(global-set-key (kbd "C-M-g") 'copy-file-name-and-line-to-clipboard)
+
+;; C-c をプリフィックスキー化
+(define-key global-map "\C-c" (make-sparse-keymap))
+;; quoted-insert は C-c C-c へ割り当て
+(global-set-key "\C-c\C-c" 'quoted-insert)
+;; window-resizer は C-c C-r (resize) で
+(global-set-key "\C-c\C-r" 'window-resizer)
+;; move between windows like vi
+(global-set-key "\C-cl" 'windmove-right)
+(global-set-key "\C-ch" 'windmove-left)
+(global-set-key "\C-cj" 'windmove-down)
+(global-set-key "\C-ck" 'windmove-up)
+
+;; split window
+(global-set-key (kbd "C-x h") 'split-window-horizontally-n)
+(global-set-key (kbd "C-x v") 'split-window-vertically-n)
+
+;; no startup msg
+(setq inhibit-startup-message t)
+
+;; specify major-mode by file type
+(setq auto-mode-alist
+      (append '(("\\.pc$" . c-mode)
+                ("\\.edl$" . c-mode))
+              auto-mode-alist))
+
+;; disable scroll-mode
+(scroll-bar-mode -1)

@@ -14,4 +14,5 @@
 (define-key global-map (kbd "M-x")     'helm-M-x)
 (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
 ;(define-key helm-find-files-map (kbd "C-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-x C-a") 'helm-select-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
