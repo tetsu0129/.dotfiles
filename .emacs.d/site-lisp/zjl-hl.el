@@ -5,11 +5,11 @@
 (require 'highlight)
 (require 'region-list-edit)
 
-(defcustom zjl-hl-make-fun-call-noticeable  t
+(defcustom zjl-hl-make-fun-call-noticeable  nil
   "enlarge font of called function, so that become noticeable"
   :type 'boolean :group 'zjl-hl)
 
-(defcustom zjl-hl-fun-call-noticeable-degree  1.2
+(defcustom zjl-hl-fun-call-noticeable-degree  1.0
   "Control the font size of function call"
   :type 'boolean :group 'zjl-hl)
 
@@ -17,7 +17,7 @@
   "Enable c mode highlight when zjl-hl-enable-global-all is called"
   :type 'boolean :group 'zjl-hl)
 
-(defcustom zjl-hl-c++-mode-enable-flag nil
+(defcustom zjl-hl-c++-mode-enable-flag t
   "Enable c++ mode highlight when zjl-hl-enable-global-all is called."
   :type 'boolean :group 'zjl-hl)
 
@@ -64,7 +64,7 @@ You can improve this if your computer has enough performance."
   "whether to print debug info or not"
   :type 'boolean :group 'zjl-hl)
 
-(defcustom zjl-hl-firstscreen-hl-toggle nil
+(defcustom zjl-hl-firstscreen-hl-toggle t
   "When not nil and when you open a new buffer, hl buffer before it shown on window.
 this will cause delay that feel uncomfortable.Don't enable this unless your computer has
 enough performance."
@@ -76,7 +76,7 @@ this will cause delay that feel uncomfortable.Don't enable this unless your comp
 enough performance."
   :type 'boolean :group 'zjl-hl)
 
-(defcustom zjl-hl-generic-macro-enable 10
+(defcustom zjl-hl-generic-macro-enable t
   "When t, assume symbol as Macro if it is purly composed by capital/number/underline.
 When number, also consider symbol as Macro as long as first N chars are capital/number/underline.
 When nil, do not apply above two assumptions, most Macro won't be highlighted"
@@ -88,12 +88,10 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-font-lock-bracket-face
   '((((class color)
       (background dark))
-     ;(:foreground "firebrick3" :bold nil :italic nil))
-     (:foreground "white" :bold nil :italic nil))
+     (:foreground "firebrick3" :bold nil :italic nil))
     (((class color)
       (background light))
-     ;(:foreground "firebrick3" :bold nil :italic nil))
-     (:foreground "white" :bold nil :italic nil))
+     (:foreground "firebrick3" :bold nil :italic nil))
     (t()))
   "*Font lock mode face for brackets, e.g. '(', ']', etc."
   :group 'zjl-hl-faces)
@@ -105,12 +103,10 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-font-lock-bracket-more-visible-face
   '((((class color)
       (background dark))
-     ;(:foreground "brown1" :bold t :italic nil))
-     (:foreground "white" :bold t :italic nil))
+     (:foreground "white" :bold nil :italic nil))
     (((class color)
       (background light))
-     ;(:foreground "brown1" :bold t :italic nil))
-     (:foreground "white" :bold t :italic nil))
+     (:foreground "brown1" :bold t :italic nil))
     (t()))
   "*Font lock mode face for brackets, e.g. '(', ']', etc."
   :group 'zjl-hl-faces)
@@ -122,9 +118,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-operators-face
   '((((class color)
       (background dark))
-;     (:foreground "PaleGreen" :bold nil :italic nil))
-     (:foreground "PaleTurquoise" :bold nil :italic nil))
-;     (:foreground "white" :bold nil :italic nil))
+     (:foreground "MediumPurple1" :bold nil :italic nil))
     (((class color)
       (background light))
      (:foreground "DarkGoldenrod4" :bold nil :italic nil))
@@ -137,12 +131,11 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-member-reference-face
   '((((class color)
       (background dark))
-     ;(:foreground "#f4a957" :bold nil :italic nil))
-     (:foreground "white" :bold nil :italic nil))
+;     (:foreground "#f4a957" :bold nil :italic nil))
+     (:foreground "RosyBrown1" :bold nil :italic nil))
     (((class color)
       (background light))
-     ;(:foreground "#008024" :bold nil :italic nil))
-     (:foreground "white" :bold nil :italic nil))
+     (:foreground "#008024" :bold nil :italic nil))
     (t()))
   "*Font lock mode face for the struct member reference, e.g. b in \"a->b\"."
   :group 'zjl-hl-faces)
@@ -152,14 +145,10 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-function-call-face
   '((((class color)
       (background dark))
-     ;(:foreground "#e566d7" :bold nil))
-     ;(:foreground "violet" :bold nil))
      (:foreground "LightSkyBlue" :bold nil))
     (((class color)
       (background light))
-     ;(:foreground "#008024" :bold nil :italic nil))
-     ;(:foreground "violet" :bold nil :italic nil))
-     (:foreground "LightSkyBlue" :bold nil :italic nil))
+     (:foreground "#008024" :bold t :italic nil))
     (t()))
   "*Font lock mode face for functioin calling."
   :group 'zjl-hl-faces)
@@ -184,8 +173,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-global-variable-reference-face
   '((((class color)
       (background dark))
-     ;(:foreground "LightGoldenrod"))
-     (:foreground "peach"))
+     (:foreground "LightGoldenrod"))
     (((class color)
       (background light))
      (:foreground "maroon" :bold nil :italic t))
@@ -198,7 +186,6 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-parameters-reference-face
   '((((class color)
       (background dark))
-;     (:foreground "LightGoldenrod" :bold t))
      (:foreground "LightGoldenrod" :bold nil :italic t))
     (((class color)
       (background light))
@@ -212,11 +199,11 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-number-face
   '((((class color)
       (background dark))
-     (:foreground "#eeeeec"))
+;     (:foreground "#eeeeec"))
+     (:foreground "PaleTurquoise"))
     (((class color)
       (background light))
-     ;(:foreground "red" :bold nil :italic nil))
-     (:foreground "white" :bold nil :italic nil))
+     (:foreground "red" :bold nil :italic nil))
     (t()))
   "*Font lock mode face for number, e.g. \"0xf5\" \"0.5\" \"234\", etc."
   :group 'zjl-hl-faces)
@@ -236,7 +223,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 
 (defvar zjl-hl-member-point-face 'zjl-hl-member-point-face)
 
-;(set-face-attribute 'font-lock-constant-face nil :foreground "red")
+(set-face-attribute 'font-lock-constant-face nil :foreground "cyan")
 
 (setq zjl-hl-operators-regexp
       (regexp-opt '("+" "-" "*" "/" "%" "!"
@@ -788,8 +775,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
                     (when zjl-hl-timer-pre-hl-obj
                       (cancel-timer zjl-hl-timer-pre-hl-obj)
                       (setq zjl-hl-timer-pre-hl-obj nil))
-;                    (setq zjl-hl-timer-pre-hl-obj (run-with-idle-timer 5 nil 'zjl-hl-timer-do-whole thisbuffer pre-hl-start pre-hl-end))))
-                    (setq zjl-hl-timer-pre-hl-obj (run-with-idle-timer 1 nil 'zjl-hl-timer-do-whole thisbuffer pre-hl-start pre-hl-end))))
+                    (setq zjl-hl-timer-pre-hl-obj (run-with-idle-timer 5 nil 'zjl-hl-timer-do-whole thisbuffer pre-hl-start pre-hl-end))))
 
 
                 (when (< (- end start) zjl-hl-too-big-size)
@@ -845,8 +831,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
                     (when zjl-hl-timer-B-obj
                       (cancel-timer zjl-hl-timer-B-obj)
                       (setq zjl-hl-timer-B-obj nil))
-;                    (setq zjl-hl-timer-B-obj (run-with-idle-timer 2 nil 'zjl-hl-timer-do-whole thisbuffer))))
-                    (setq zjl-hl-timer-B-obj (run-with-idle-timer 1 nil 'zjl-hl-timer-do-whole thisbuffer))))
+                    (setq zjl-hl-timer-B-obj (run-with-idle-timer 2 nil 'zjl-hl-timer-do-whole thisbuffer))))
 		(if (> (- (float-time) start-time) 8)
 		    (zjl-hl-stop-work (- (float-time) start-time))
 		  (when (> (- (float-time) start-time) 2)
@@ -962,8 +947,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 
 	;; This is needed, the buffer might be parsed recently and result is cached before file is open, so no parse semantic-after-idle-scheduler-reparse-hook called to set the parse-done flag.
 	(when (not (equal (buffer-name) "zjl-hl-test.c"));;sometime I use this buffer for test hl of simplified code, and do not want be bothered.
-;	  (run-with-idle-timer 7 nil 'zjl-hl-after-buffer-load-a-while-force-set-parse-done (current-buffer))
-	  (run-with-idle-timer 1 nil 'zjl-hl-after-buffer-load-a-while-force-set-parse-done (current-buffer))
+	  (run-with-idle-timer 7 nil 'zjl-hl-after-buffer-load-a-while-force-set-parse-done (current-buffer))
 	  (run-with-timer 20 nil 'zjl-hl-after-buffer-load-a-while-force-set-parse-done (current-buffer))
 	  
 	  ;;hl larger of region that cover current screen
@@ -1013,8 +997,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 	    (when zjl-hl-partial-change-region-activate-timer
 	      (cancel-timer zjl-hl-partial-change-region-activate-timer)
 	      (setq zjl-hl-partial-change-region-activate-timer nil))
-;	    (setq zjl-hl-partial-change-region-activate-timer (run-with-idle-timer 5 nil 'zjl-hl-partial-change-region-activate (current-buffer))))))
-	    (setq zjl-hl-partial-change-region-activate-timer (run-with-idle-timer 1 nil 'zjl-hl-partial-change-region-activate (current-buffer))))))
+	    (setq zjl-hl-partial-change-region-activate-timer (run-with-idle-timer 5 nil 'zjl-hl-partial-change-region-activate (current-buffer))))))
     (error (zjl-hl-dbg-print "error in zjl-hl-semantic-after-partial-cache-change-hook:%s" 'critical (error-message-string err)))))
 
 
@@ -1033,8 +1016,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 	    (when zjl-hl-partial-change-region-activate-timer
 	      (cancel-timer zjl-hl-partial-change-region-activate-timer)
 	      (setq zjl-hl-partial-change-region-activate-timer nil))
-;	    (setq zjl-hl-partial-change-region-activate-timer (run-with-idle-timer 5 nil 'zjl-hl-partial-change-region-activate (current-buffer))))))
-	    (setq zjl-hl-partial-change-region-activate-timer (run-with-idle-timer 1 nil 'zjl-hl-partial-change-region-activate (current-buffer))))))
+	    (setq zjl-hl-partial-change-region-activate-timer (run-with-idle-timer 5 nil 'zjl-hl-partial-change-region-activate (current-buffer))))))
     (error (zjl-hl-dbg-print "error in zjl-hl-after-change-functions--hook" 'critical (error-message-string err))))
   )
 
@@ -1081,8 +1063,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 	(when zjl-hl-update-screen-timer
 	  (cancel-timer zjl-hl-update-screen-timer)
 	  (setq zjl-hl-update-screen-timer nil))
-;	(setq zjl-hl-update-screen-timer (run-with-idle-timer 7 nil 'zjl-hl-update-screen (current-buffer))))
-	(setq zjl-hl-update-screen-timer (run-with-idle-timer 1 nil 'zjl-hl-update-screen (current-buffer))))
+	(setq zjl-hl-update-screen-timer (run-with-idle-timer 7 nil 'zjl-hl-update-screen (current-buffer))))
       (setq zjl-hl-partial-change-region nil))))
 
 (setq zjl-hl-fun-call-noticeable-degree-old-value nil)
@@ -1091,8 +1072,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
   (interactive)
   (when zjl-hl-make-fun-call-noticeable
     (setq zjl-hl-fun-call-noticeable-degree-old-value (face-attribute 'font-lock-function-name-face :underline))
-    ;; (set-face-attribute 'font-lock-function-name-face nil :underline t))
-    (set-face-attribute 'font-lock-function-name-face nil :underline nil))
+    (set-face-attribute 'font-lock-function-name-face nil :underline t))
   (when zjl-hl-c-mode-enable-flag
     (zjl-hl-enable-global 'c-mode))
   (when zjl-hl-c++-mode-enable-flag
@@ -1258,8 +1238,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
   (when zjl-hl-after-semantic-parse-done-obj
     (cancel-timer zjl-hl-after-semantic-parse-done-obj)
     (setq zjl-hl-after-semantic-parse-done-obj nil))
-;  (setq zjl-hl-after-semantic-parse-done-obj (run-with-idle-timer 2.5 nil 'zjl-hl-after-semantic-parse-done (current-buffer))))
-  (setq zjl-hl-after-semantic-parse-done-obj (run-with-idle-timer 1 nil 'zjl-hl-after-semantic-parse-done (current-buffer))))
+  (setq zjl-hl-after-semantic-parse-done-obj (run-with-idle-timer 2.5 nil 'zjl-hl-after-semantic-parse-done (current-buffer))))
 
 (defun zjl-hl-revert-clone-buffer-then-kill (thisbuffer)
   (when (buffer-live-p thisbuffer)
@@ -1287,8 +1266,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 	    (setq zjl-hl-regions-2B-X-X nil)
 	    (zjl-hl-timer-do-whole thisbuffer (point-min-marker) (point-max-marker) 'AB)
 	    (when else-deleted
-;	      (run-with-idle-timer 6 nil 'zjl-hl-revert-clone-buffer-then-kill (current-buffer))))))
-	      (run-with-idle-timer 1 nil 'zjl-hl-revert-clone-buffer-then-kill (current-buffer))))))
+	      (run-with-idle-timer 6 nil 'zjl-hl-revert-clone-buffer-then-kill (current-buffer))))))
     (error (zjl-hl-dbg-print-message "error in zjl-hl-hl-whole-buffer: %s" (error-message-string err))
            (zjl-hl-dbg-print "error in zjl-hl-hl-whole-buffer: %s" 'verbose (error-message-string err)))))
 
