@@ -88,7 +88,7 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
 (defface zjl-hl-font-lock-bracket-face
   '((((class color)
       (background dark))
-     (:foreground "firebrick3" :bold nil :italic nil))
+     (:foreground "IndianRed" :bold nil :italic nil))
     (((class color)
       (background light))
      (:foreground "firebrick3" :bold nil :italic nil))
@@ -308,20 +308,22 @@ When nil, do not apply above two assumptions, most Macro won't be highlighted"
                               '("\\(\\_<\\(?:\\(?:0x[0-9a-fA-F]*\\)\\|\\(?:[0-9]+\\(\\.[0-9]+\\)?\\)\\|\\(?:0[0-7]*\\)\\|\\(?:[01]+b\\)\\)\\_>\\)"
                                 0  zjl-hl-number-face keep)
                               '(zjl-hl-search-member-function-call 1  zjl-hl-member-reference-face keep);; this is for case of a.b.c, need this function to let b and c both cover
+                              '("\\_<\\([_A-Z0-9]+\\)\\_>" 
+                                0  zjl-hl-number-face keep)
                               '("\\(?:\\.\\|->\\)\\(\\_<\\(?:\\w\\|\\s_\\)+\\_>\\)[ 	\n]*("
                                 1  zjl-hl-function-call-face keep)       
                               '("\\(\\_<\\(\\w\\|\\s_\\)+\\_>\\)[ 	\n]*("
                                 1  zjl-hl-function-call-face keep)))
 
 ;; Do not forbid the first captial to be number, because there are \\_<[0-9]+ULL?\\_> in kernel code
-(cond
- ((equal t zjl-hl-generic-macro-enable)
-  (add-to-list 'zjl-hl-c-mode-keywords '("\\_<\\([_A-Z0-9]+\\)\\_>" 
-                                         0  zjl-hl-number-face keep) t))
- ((numberp zjl-hl-generic-macro-enable)
-  (add-to-list 'zjl-hl-c-mode-keywords (list (concat "\\(" "\\_<\\([_A-Z0-9]+\\)\\_>" "\\|" "\\_<\\([_A-Z0-9]\\{"  (number-to-string zjl-hl-generic-macro-enable) ",\\}[_A-Z0-9a-z]+\\)\\_>" "\\)") 0  'zjl-hl-number-face 'keep) t))
- (t nil)
- )
+;; (cond
+;;  ((equal t zjl-hl-generic-macro-enable)
+;;   (add-to-list 'zjl-hl-c-mode-keywords '("\\_<\\([_A-Z0-9]+\\)\\_>" 
+;;                                          0  zjl-hl-number-face keep) t))
+;;  ((numberp zjl-hl-generic-macro-enable)
+;;   (add-to-list 'zjl-hl-c-mode-keywords (list (concat "\\(" "\\_<\\([_A-Z0-9]+\\)\\_>" "\\|" "\\_<\\([_A-Z0-9]\\{"  (number-to-string zjl-hl-generic-macro-enable) ",\\}[_A-Z0-9a-z]+\\)\\_>" "\\)") 0  'zjl-hl-number-face 'keep) t))
+;;  (t nil)
+;;  )
 
 (setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
 (add-to-list 'zjl-hl-c++-mode-keywords '("<[_a-zA-Z][_a-zA-Z0-9]*\\(::[_a-zA-Z][_a-zA-Z0-9]*\\)?[ 	]*\\*?>"
