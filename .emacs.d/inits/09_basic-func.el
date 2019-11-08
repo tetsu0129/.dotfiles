@@ -151,4 +151,15 @@
     (setq bcode (char-before (point)))
     (setq end (find-match-pair bcode))
     (delete-region begin end)))
-      
+
+;; Add newline like o in vim.
+(defun newline-next ()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
+;; Add newline like O in vim.
+(defun newline-previous ()
+  (interactive)
+  (previous-line)
+  (newline-next))

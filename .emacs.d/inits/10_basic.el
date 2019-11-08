@@ -110,3 +110,5 @@
 
 (global-set-key (kbd "C-M-d") 'delete-inside)
 (global-set-key (kbd "C-M-h") 'delete-backward)
+(global-set-key (kbd "M-o")   'newline-next)
+(global-set-key (kbd "C-M-o") 'newline-previous)
