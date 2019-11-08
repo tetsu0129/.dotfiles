@@ -52,7 +52,7 @@
 ;; highlight current line.
 (defface my-hl-line-face
   '((((class color) (background dark))
-     (:background "NavyBlue" t))
+     (:background "gray8" t))
     (t (:bold t)))
   "hl-line's my face")
 (setq hl-line-face 'my-hl-line-face)
@@ -99,3 +99,14 @@
 
 ;; disable scroll-mode
 (scroll-bar-mode -1)
+;; (set-face-attribute 'fringe nil :background "grey8")
+;; (add-to-list 'default-frame-alist '(left-fringe . 11))
+;; (add-to-list 'default-frame-alist '(right-fringe . 0))
+;; (face-spec-set 'fringe '((t :background "black"
+;;                             )))
+;; (setq-default left-fringe-width 11)
+;; (setq-default right-fringe-width 0)
+;(global-display-line-numbers-mode)
+
+(global-set-key (kbd "C-M-d") 'delete-inside)
+(global-set-key (kbd "C-M-h") 'delete-backward)

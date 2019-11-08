@@ -111,3 +111,44 @@
       (split-window-horizontally
        (- (window-width) (/ (window-width) num_wins)))
       (split-window-horizontally-n (- num_wins 1)))))
+
+(defun delete-backward ()
+  (interactive)
+  (backward-word)
+  (kill-word 1))
+
+;; Find the point where matching operator locates.
+;; bcode is ?\(, ?\[ or ?\{.
+(defun find-match-pair (bcode)
+  (let (str (cnt 1) ecode)
+    (cond ((equal bcode ?\()
+           (setq str "^()")
+           (setq ecode ?\)))
+          ((equal bcode ?\[)
+           (setq str "^[]")
+           (setq ecode ?\]))
+          ((equal bcode ?\{)
+           (setq str "^{}")
+           (setq ecode ?\})))
+    (catch 'found
+      (while t 
+        (skip-chars-forward str)
+        (cond ((equal bcode (char-after (point)))
+               (setq cnt (1+ cnt)))
+              ((equal ecode (char-after (point)))
+               (setq cnt (1- cnt))))
+        (if (equal cnt 0)
+            (throw 'found t)
+          (forward-char))))
+    (point)))
+
+;; Delete the region which is enclosed by operators such as (), [], {}.
+(defun delete-inside ()
+  (interactive)
+  (let (tgt begin end)
+    (skip-chars-backward "^([{")
+    (setq begin (point))
+    (setq bcode (char-before (point)))
+    (setq end (find-match-pair bcode))
+    (delete-region begin end)))
+      
