@@ -52,11 +52,11 @@
 ;; highlight current line.
 (defface my-hl-line-face
   '((((class color) (background dark))
-     (:background "gray8" t))
+     (:background "grey8" t))
     (t (:bold t)))
   "hl-line's my face")
 (setq hl-line-face 'my-hl-line-face)
-;(global-hl-line-mode t)
+(global-hl-line-mode -1)
 
 ;; move to the other window by M-o.
 (global-set-key "\M-o" 'other-window)
@@ -99,16 +99,22 @@
 
 ;; disable scroll-mode
 (scroll-bar-mode -1)
-;; (set-face-attribute 'fringe nil :background "grey8")
-;; (add-to-list 'default-frame-alist '(left-fringe . 11))
-;; (add-to-list 'default-frame-alist '(right-fringe . 0))
-;; (face-spec-set 'fringe '((t :background "black"
-;;                             )))
-;; (setq-default left-fringe-width 11)
-;; (setq-default right-fringe-width 0)
-;(global-display-line-numbers-mode)
 
-(global-set-key (kbd "C-M-d") 'delete-inside)
-(global-set-key (kbd "C-M-h") 'delete-backward)
+;; auto insert match parenthese
+(defun my-local-electric-pair-mode ()
+  (make-variable-buffer-local 'electric-pair-mode)
+  (electric-pair-mode +1))
+(add-hook 'c-mode-hook 'my-local-electric-pair-mode)
+
+;(global-display-line-numbers-mode)
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+(require 'gxref)
+(add-to-list 'xref-backend-functions 'gxref-xref-backend)
+
+;(global-set-key (kbd "C-M-i") 'delete-inside-operator)
+(global-set-key (kbd "C-M-d") 'delete-forward-operator)
+(global-set-key (kbd "C-M-h") 'delete-backward-operator)
+(global-set-key (kbd "M-h") 'delete-backward)
 (global-set-key (kbd "M-o")   'newline-next)
 (global-set-key (kbd "C-M-o") 'newline-previous)

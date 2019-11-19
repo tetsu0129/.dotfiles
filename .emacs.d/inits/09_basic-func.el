@@ -143,13 +143,29 @@
     (point)))
 
 ;; Delete the region which is enclosed by operators such as (), [], {}.
-(defun delete-inside ()
+(defun delete-inside-operator ()
   (interactive)
   (let (tgt begin end)
     (skip-chars-backward "^([{")
     (setq begin (point))
     (setq bcode (char-before (point)))
     (setq end (find-match-pair bcode))
+    (delete-region begin end)))
+
+;; Delete forward until the operators such as ), ], }.
+(defun delete-forward-operator ()
+  (interactive)
+  (let ((begin (point)) end)
+    (skip-chars-forward "^()[]{}")
+    (setq end (point))
+    (delete-region begin end)))
+
+;; Delete backward until the operators such as (, [, {.
+(defun delete-backward-operator ()
+  (interactive)
+  (let ((end (point)) begin)
+    (skip-chars-backward "^()[]{}")
+    (setq begin (point))
     (delete-region begin end)))
 
 ;; Add newline like o in vim.
