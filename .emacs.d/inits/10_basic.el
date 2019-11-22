@@ -106,11 +106,12 @@
   (electric-pair-mode +1))
 (add-hook 'c-mode-hook 'my-local-electric-pair-mode)
 
-;(global-display-line-numbers-mode)
-(global-set-key (kbd "C-c a") 'org-agenda)
+(global-display-line-numbers-mode)
+(set-face-background 'line-number "gray16")
+(set-face-foreground 'line-number "DimGray")
+(set-face-foreground 'line-number-current-line "LightGray")
 
-(require 'gxref)
-(add-to-list 'xref-backend-functions 'gxref-xref-backend)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 ;(global-set-key (kbd "C-M-i") 'delete-inside-operator)
 (global-set-key (kbd "C-M-d") 'delete-forward-operator)
