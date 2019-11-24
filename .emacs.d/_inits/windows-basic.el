@@ -13,8 +13,8 @@
 (set-default 'buffer-file-coding-system 'utf-8-unix)
 
 ;; use utf-8-unix for c source, c header, elisp files.
-(modify-coding-system-alist 'file "\\.c\\'" 'utf-8-unix)  ;; c source
-(modify-coding-system-alist 'file "\\.h\\'" 'utf-8-unix)  ;; c header
+;; (modify-coding-system-alist 'file "\\.c\\'" 'utf-8-unix)  ;; c source
+;; (modify-coding-system-alist 'file "\\.h\\'" 'utf-8-unix)  ;; c header
 ;; (modify-coding-system-alist 'file "\\.c\\'" 'utf-8)  ;; c source
 ;; (modify-coding-system-alist 'file "\\.h\\'" 'utf-8)  ;; c header
 ;; (modify-coding-system-alist 'file "\\.el\\'" 'utf-8-unix)  ;; elisp
@@ -39,24 +39,24 @@
 (setq vc-follow-symlinks t)
 
 ;; server start for emacs-client
-;; (when window-system                       ; GUI時
-;;   (require 'server)
-;;   (unless (eq (server-running-p) 't)
-;;     (server-start)
+(when window-system                       ; GUI時
+  (require 'server)
+  (unless (eq (server-running-p) 't)
+    (server-start)
 
-;;     (defun iconify-emacs-when-server-is-done ()
-;;       (unless server-clients (iconify-frame)))
+    (defun iconify-emacs-when-server-is-done ()
+      (unless server-clients (iconify-frame)))
 
-;;     ;; C-x C-cに割り当てる(好みに応じて)
-;;     (global-set-key (kbd "C-x C-c") 'server-edit)
-;;     ;; M-x exitでEmacsを終了できるようにする
-;;     (defalias 'exit 'save-buffers-kill-emacs)
-;;     ;; 起動時に最小化する
-;;     ;(add-hook 'after-init-hook 'iconify-emacs-when-server-is-done)
+    ;; C-x C-cに割り当てる(好みに応じて)
+    (global-set-key (kbd "C-x C-c") 'server-edit)
+    ;; M-x exitでEmacsを終了できるようにする
+    (defalias 'exit 'save-buffers-kill-emacs)
+    ;; 起動時に最小化する
+    ;(add-hook 'after-init-hook 'iconify-emacs-when-server-is-done)
 
-;;     ;; 終了時にyes/noの問い合わせ
-;;     ;(setq confirm-kill-emacs 'yes-or-no-p)
-;;     )
-;;   )
+    ;; 終了時にyes/noの問い合わせ
+    ;(setq confirm-kill-emacs 'yes-or-no-p)
+    )
+  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
