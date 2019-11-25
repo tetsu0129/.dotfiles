@@ -17,7 +17,9 @@
 (setq display-time-24hr-format t)
 (define-key global-map (kbd "C-c") (make-sparse-keymap))  ;; make C-c prefix key
 ;;; line-numbers
-(global-display-line-numbers-mode)
+;; (global-display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
 (set-face-background 'line-number "gray16")
 (set-face-foreground 'line-number "DimGray")
 (set-face-foreground 'line-number-current-line "LightGray")
