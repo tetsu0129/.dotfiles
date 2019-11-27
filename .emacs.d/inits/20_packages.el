@@ -325,3 +325,8 @@
 (use-package zjl-hl
   :config
   (add-hook 'after-init-hook 'zjl-hl-enable-global-all-modes))
+
+(use-package smart-newline
+  :ensure t
+  :hook
+  (prog-mode . smart-newline-mode))
